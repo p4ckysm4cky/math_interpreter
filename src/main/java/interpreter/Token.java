@@ -6,19 +6,25 @@ package main.java.interpreter;
 public class Token {
     final TokenType type;
     // value represents what it looked line in input stream
-    final String value;
     // potentially useful for error printing
     final int col;
 
-    Token(TokenType type, String value, int col) {
+    Token(TokenType type,  int col) {
         this.type = type;
-        this.value = value;
         this.col = col;
+    }
+
+    public TokenType getTokenType() {
+        return this.type;
+    }
+
+    public int getCol() {
+        return this.col;
     }
 
     @Override
     public String toString() {
-        String returnStr = type + ":" + value;
+        String returnStr = "[" + type + "]";
         return returnStr;
     }
 }
