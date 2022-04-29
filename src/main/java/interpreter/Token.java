@@ -9,7 +9,7 @@ public class Token {
     // potentially useful for error printing
     final int col;
 
-    Token(TokenType type,  int col) {
+    Token(TokenType type, int col) {
         this.type = type;
         this.col = col;
     }

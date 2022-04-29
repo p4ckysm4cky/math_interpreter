@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Lexer {
     private final String text;
     private int currentPos = -1;
-    private final  ArrayList<Token> tokens = new ArrayList<Token>();
+    private final ArrayList<Token> tokens = new ArrayList<Token>();
 
     Lexer(String text) {
         this.text = text;
@@ -13,6 +13,7 @@ public class Lexer {
 
     /**
      * Determines if our currentPos has reached the end of text yet
+     *
      * @return true if we have reached end, otherwise false
      */
     private boolean isAtEnd() {
@@ -20,8 +21,9 @@ public class Lexer {
     }
 
     /**
-     * Returns the current character and increments currentPos forward
-     * @return char at currentPos of text
+     * Returns the next character of text by incrementing currentPos
+     *
+     * @return next character in text
      */
     private char advance() {
         currentPos++;
@@ -30,7 +32,21 @@ public class Lexer {
     }
 
     /**
+     * Returns the next character in text
+     * without incrementing currentPos
+     *
+     * @return next character in text, unless EOF then nul char
+     */
+    private char peek() {
+        if (isAtEnd()) {
+            return '\0';
+        }
+        return text.charAt(currentPos+1);
+    }
+
+    /**
      * Quickly generates a token, but cannot be used to make NumToken
+     *
      * @param type of token found from the lexer
      */
     private void addToken(TokenType type) {

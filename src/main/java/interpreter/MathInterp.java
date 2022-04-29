@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 
 public class MathInterp {
 
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         runPrompt();
 
     }
@@ -34,7 +34,6 @@ public class MathInterp {
     }
 
     /**
-     *
      * @param line, a String that is executed after parsing
      */
     private static void run(String line) {
