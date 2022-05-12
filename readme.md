@@ -6,7 +6,7 @@
 
 * [ ] lexer scanning for tokens
   * [x] dealing with single char tokens
-    * [ ] Need to test this
+    * [X] Need to test this
   * [ ] dealing with numbers
 * [ ] error handling for lexer
   * [ ] don't execute if error in lexing

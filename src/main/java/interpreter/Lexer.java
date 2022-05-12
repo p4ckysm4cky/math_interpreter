@@ -57,7 +57,7 @@ public class Lexer {
      * @return true if we have reached end, otherwise false
      */
     private boolean isAtEnd() {
-        return (currentPos >= text.length());
+        return (currentPos >= text.length() - 1);
     }
 
     /**
@@ -93,6 +93,10 @@ public class Lexer {
     private void addToken(TokenType type) {
         Token newToken = new Token(type, currentPos);
         this.tokens.add(newToken);
+    }
+
+    public String toString() {
+        return tokens.toString();
     }
 
 }

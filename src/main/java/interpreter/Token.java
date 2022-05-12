@@ -4,10 +4,10 @@ package main.java.interpreter;
  * A token produced from a lexer
  */
 public class Token {
-    final TokenType type;
+    protected final TokenType type;
     // value represents what it looked line in input stream
     // potentially useful for error printing
-    final int col;
+    protected final int col;
 
     Token(TokenType type, int col) {
         this.type = type;
@@ -27,4 +27,9 @@ public class Token {
         String returnStr = "[" + type + "]";
         return returnStr;
     }
+
+    public TokenType getType() {
+        return this.type;
+    }
+
 }
