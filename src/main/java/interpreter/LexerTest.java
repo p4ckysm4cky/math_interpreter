@@ -84,4 +84,85 @@ public class LexerTest {
         expected.add(new Token(TokenType.MINUS, 1));
         assertEquals(lex.toString(), expected.toString());
     }
+
+    @Test
+    public void basicInteger() {
+        Lexer lex = new Lexer("5");
+        lex.scanTokens();
+        String expected = "[[NUMBER:5.0]]";
+        assertEquals(expected, lex.toString());
+
+        lex = new Lexer("123");
+        lex.scanTokens();
+        expected = "[[NUMBER:123.0]]";
+        assertEquals(expected, lex.toString());
+
+        lex = new Lexer("0");
+        lex.scanTokens();
+        expected = "[[NUMBER:0.0]]";
+        assertEquals(expected, lex.toString());
+
+        lex = new Lexer("9");
+        lex.scanTokens();
+        expected = "[[NUMBER:9.0]]";
+        assertEquals(expected, lex.toString());
+
+        lex = new Lexer("1234567");
+        lex.scanTokens();
+        expected = "[[NUMBER:1234567.0]]";
+        assertEquals(expected, lex.toString());
+    }
+
+    @Test
+    public void basicFloat() {
+        Lexer lex = new Lexer("42.0");
+        lex.scanTokens();
+        String expected = "[[NUMBER:42.0]]";
+        assertEquals(expected, lex.toString());
+
+        lex = new Lexer("12.3");
+        lex.scanTokens();
+        expected = "[[NUMBER:12.3]]";
+        assertEquals(expected, lex.toString());
+
+        lex = new Lexer("99.99");
+        lex.scanTokens();
+        expected = "[[NUMBER:99.99]]";
+        assertEquals(expected, lex.toString());
+
+        lex = new Lexer("000.43689");
+        lex.scanTokens();
+        expected = "[[NUMBER:0.43689]]";
+        assertEquals(expected, lex.toString());
+
+        lex = new Lexer("0103.43689");
+        lex.scanTokens();
+        expected = "[[NUMBER:103.43689]]";
+        assertEquals(expected, lex.toString());
+    }
+
+    @Test
+    public void testInvalidNums() {
+        Lexer lex = new Lexer("42..0");
+        lex.scanTokens();
+        String expected = "[[NUMBER:42.0], [NUMBER:0.0]]";
+        assertEquals(expected, lex.toString());
+
+        lex = new Lexer(".123");
+        lex.scanTokens();
+        expected = "[[NUMBER:123.0]]";
+        assertEquals(expected, lex.toString());
+
+        lex = new Lexer("1337.");
+        lex.scanTokens();
+        expected = "[[NUMBER:1337.0]]";
+        assertEquals(expected, lex.toString());
+
+        lex = new Lexer("420.\\3");
+        lex.scanTokens();
+        expected = "[[NUMBER:420.0], [NUMBER:3.0]]";
+        assertEquals(expected, lex.toString());
+    }
+
+    // Need to add further test cases which is basically an entire expression
 }

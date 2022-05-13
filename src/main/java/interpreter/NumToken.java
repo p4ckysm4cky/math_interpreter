@@ -5,8 +5,8 @@ public class NumToken extends Token {
     // in NumToken we store the number in NumToken
     private double value;
 
-    NumToken(TokenType type, int col, double value) {
-        super(type, col);
+    NumToken(double value, int col) {
+        super(TokenType.NUMBER, col);
         this.value = value;
     }
 

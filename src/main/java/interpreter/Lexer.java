@@ -46,8 +46,14 @@ public class Lexer {
                 addToken(TokenType.MINUS);
                 break;
             default:
+                // Check if number
+                if (isDigit(c)) {
+                    genNumber();
+                }
                 // this part is incomplete should be used for numbers and error handling
-                System.out.println("Error in scanToken");
+                else {
+                    System.out.println("Error in scanToken");
+                }
         }
     }
 
@@ -85,6 +91,20 @@ public class Lexer {
     }
 
     /**
+     * Returns the character of currentPos + offset
+     * without incrementing currentPos
+     *
+     * @param offset how many characters to the right
+     * @return character at the offset position
+     */
+    private char peek(int offset) {
+        if (currentPos + offset >= text.length()) {
+            return '\0';
+        }
+        return text.charAt(currentPos + offset);
+    }
+
+    /**
      * Quickly generates a token, and adds it to
      * the token instance variable
      *
@@ -97,6 +117,44 @@ public class Lexer {
 
     public String toString() {
         return tokens.toString();
+    }
+
+    /**
+     * Checks if the character passed in a number
+     *
+     * @param c character passed in
+     * @return true if number, otherwise false
+     */
+    public boolean isDigit(char c) {
+        return (c >= '0' && c <= '9');
+    }
+
+    /**
+     * Checks if the next position is at a DOT, if it's at a dot
+     * we need to make sure there's numbers after it
+     *
+     * @return true if current is pointing at '.' and next is a digit
+     */
+    private boolean validFloat() {
+        char nextChar = peek();
+        return nextChar == '.' && isDigit(peek(2));
+    }
+
+    /**
+     * Adds NumToken to this.token
+     */
+    public void genNumber() {
+        // This is our flag to make sure we only see the decimal point once
+        boolean dotNotSeen = true;
+        StringBuilder strNum = new StringBuilder(text.charAt(currentPos) + "");
+        while (isDigit(peek()) || (validFloat()) && dotNotSeen) {
+            char currentChar = advance();
+            if (currentChar == '.') {
+                dotNotSeen = false;
+            }
+            strNum.append(currentChar);
+        }
+        tokens.add(new NumToken(Double.parseDouble(strNum.toString()), currentPos));
     }
 
 }
