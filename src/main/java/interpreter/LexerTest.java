@@ -164,5 +164,36 @@ public class LexerTest {
         assertEquals(expected, lex.toString());
     }
 
-    // Need to add further test cases which is basically an entire expression
+    // Test case for expressions
+    @Test
+    public void testExpression() {
+        Lexer lex = new Lexer("9+10");
+        lex.scanTokens();
+        String expected = "[[NUMBER:9.0], [PLUS], [NUMBER:10.0]]";
+        assertEquals(expected, lex.toString());
+
+        lex = new Lexer("10-123");
+        lex.scanTokens();
+        expected = "[[NUMBER:10.0], [MINUS], [NUMBER:123.0]]";
+        assertEquals(expected, lex.toString());
+
+        lex = new Lexer("45*87");
+        lex.scanTokens();
+        expected = "[[NUMBER:45.0], [STAR], [NUMBER:87.0]]";
+        assertEquals(expected, lex.toString());
+
+        lex = new Lexer("142/32");
+        lex.scanTokens();
+        expected = "[[NUMBER:142.0], [SLASH], [NUMBER:32.0]]";
+        assertEquals(expected, lex.toString());
+
+        lex = new Lexer("(3+8)*3/2");
+        lex.scanTokens();
+        expected = "[[L_PAREN], [NUMBER:3.0], [PLUS], [NUMBER:8.0], [R_PAREN], [STAR], [NUMBER:3.0], [SLASH], [NUMBER:2.0]]";
+        assertEquals(expected, lex.toString());
+
+        lex = new Lexer("(32.45+55.99)/(45.32-32.321)");
+        lex.scanTokens();
+        expected = "[[L_PAREN], [NUMBER:32.45], [PLUS], [NUMBER:55.99], [SLASH], [L_PAREN], [NUMBER:45.32], [MINUS], [NUMBER:32.321]], [R_PAREN]";
+    }
 }

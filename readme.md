@@ -9,7 +9,8 @@
     * [X] Need to test this
   * [x] dealing with numbers
     * [x] Test cases for it
-  * [ ] Add test cases for an entire expression
+  * [x] Add test cases for an entire expression
+  * [ ] Add ignore white space in lexer
 * [ ] error handling for lexer
   * [ ] don't execute if error in lexing
   * [ ] error logging to user
