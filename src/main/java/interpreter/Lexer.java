@@ -45,6 +45,11 @@ public class Lexer {
             case '-':
                 addToken(TokenType.MINUS);
                 break;
+            // ignore whitespaces
+            case ' ':
+            case '\t':
+            case '\n':
+                break;
             default:
                 // Check if number
                 if (isDigit(c)) {

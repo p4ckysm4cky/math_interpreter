@@ -196,4 +196,40 @@ public class LexerTest {
         lex.scanTokens();
         expected = "[[L_PAREN], [NUMBER:32.45], [PLUS], [NUMBER:55.99], [SLASH], [L_PAREN], [NUMBER:45.32], [MINUS], [NUMBER:32.321]], [R_PAREN]";
     }
+
+    @Test
+    public void testExpressionWithWhitespaces() {
+        Lexer lex = new Lexer("9\t+   10");
+        lex.scanTokens();
+        String expected = "[[NUMBER:9.0], [PLUS], [NUMBER:10.0]]";
+        assertEquals(expected, lex.toString());
+
+        lex = new Lexer("   10 -  123");
+        lex.scanTokens();
+        expected = "[[NUMBER:10.0], [MINUS], [NUMBER:123.0]]";
+        assertEquals(expected, lex.toString());
+
+        lex = new Lexer(" 45 \t\n *  87");
+        lex.scanTokens();
+        expected = "[[NUMBER:45.0], [STAR], [NUMBER:87.0]]";
+        assertEquals(expected, lex.toString());
+
+        lex = new Lexer("\t142\t/\t32\t");
+        lex.scanTokens();
+        expected = "[[NUMBER:142.0], [SLASH], [NUMBER:32.0]]";
+        assertEquals(expected, lex.toString());
+
+        lex = new Lexer("\n(3+8)*3/2");
+        lex.scanTokens();
+        expected = "[[L_PAREN], [NUMBER:3.0], [PLUS], [NUMBER:8.0], [R_PAREN], [STAR], [NUMBER:3.0], [SLASH], [NUMBER:2.0]]";
+        assertEquals(expected, lex.toString());
+
+        lex = new Lexer("\t(32.45   +\t55.99   ) /   (  45.32  -  32.321  )");
+        lex.scanTokens();
+        expected = "[[L_PAREN], [NUMBER:32.45], [PLUS], [NUMBER:55.99], [SLASH], [L_PAREN], [NUMBER:45.32], [MINUS], [NUMBER:32.321]], [R_PAREN]";
+
+        lex = new Lexer(" 12\t34\t+\n*    32");
+        lex.scanTokens();
+        expected = "[[NUMBER:12], [NUMBER:34], [PLUS], [STAR], [NUMBER: 32]]";
+    }
 }
