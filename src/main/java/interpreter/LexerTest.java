@@ -39,6 +39,11 @@ public class LexerTest {
         lex.scanTokens();
         expected = "[[MINUS]]";
         assertEquals(lex.toString(), expected);
+
+        lex = new Lexer("^");
+        lex.scanTokens();
+        expected = "[[CARET]]";
+        assertEquals(lex.toString(), expected);
     }
 
     @Test
@@ -59,7 +64,7 @@ public class LexerTest {
 
     @Test
     public void allCharTokensTogether() {
-        Lexer lex = new Lexer("()*/+-");
+        Lexer lex = new Lexer("()*/+-^");
         lex.scanTokens();
         ArrayList<Token> expected = new ArrayList<Token>();
         expected.add(new Token(TokenType.L_PAREN, 1));
@@ -68,12 +73,13 @@ public class LexerTest {
         expected.add(new Token(TokenType.SLASH, 1));
         expected.add(new Token(TokenType.PLUS, 1));
         expected.add(new Token(TokenType.MINUS, 1));
+        expected.add(new Token(TokenType.CARET, 1));
         assertEquals(lex.toString(), expected.toString());
     }
 
     @Test
     public void allCharTokensTogetherWithUnknown() {
-        Lexer lex = new Lexer("()c*b/}a;.,?a+d-fh{");
+        Lexer lex = new Lexer("()c*b/}a;.,?a+d^-fh{");
         lex.scanTokens();
         ArrayList<Token> expected = new ArrayList<Token>();
         expected.add(new Token(TokenType.L_PAREN, 1));
@@ -81,6 +87,7 @@ public class LexerTest {
         expected.add(new Token(TokenType.STAR, 1));
         expected.add(new Token(TokenType.SLASH, 1));
         expected.add(new Token(TokenType.PLUS, 1));
+        expected.add(new Token(TokenType.CARET, 1));
         expected.add(new Token(TokenType.MINUS, 1));
         assertEquals(lex.toString(), expected.toString());
     }
@@ -195,6 +202,10 @@ public class LexerTest {
         lex = new Lexer("(32.45+55.99)/(45.32-32.321)");
         lex.scanTokens();
         expected = "[[L_PAREN], [NUMBER:32.45], [PLUS], [NUMBER:55.99], [SLASH], [L_PAREN], [NUMBER:45.32], [MINUS], [NUMBER:32.321]], [R_PAREN]";
+
+        lex = new Lexer("45^(36)-32");
+        lex.scanTokens();
+        expected = "[[NUMBER:45], [CARET], [L_PAREN], [NUMBER:36], [R_PAREN], [MINUS], [NUMBER:32]]";
     }
 
     @Test
@@ -231,5 +242,9 @@ public class LexerTest {
         lex = new Lexer(" 12\t34\t+\n*    32");
         lex.scanTokens();
         expected = "[[NUMBER:12], [NUMBER:34], [PLUS], [STAR], [NUMBER: 32]]";
+
+        lex = new Lexer(" \t45 ^    ( \t36  )-  32");
+        lex.scanTokens();
+        expected = "[[NUMBER:45], [CARET], [L_PAREN], [NUMBER:36], [R_PAREN], [MINUS], [NUMBER:32]]";
     }
 }

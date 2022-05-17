@@ -45,6 +45,9 @@ public class Lexer {
             case '-':
                 addToken(TokenType.MINUS);
                 break;
+            case '^':
+                addToken(TokenType.CARET);
+                break;
             // ignore whitespaces
             case ' ':
             case '\t':
