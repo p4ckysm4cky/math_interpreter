@@ -1,11 +1,13 @@
 package main.java.interpreter;
 
 import java.util.ArrayList;
+import java.lang.StringBuilder;
 
 public class Lexer {
     private final String text;
     private int currentPos = -1;
     private final ArrayList<Token> tokens = new ArrayList<Token>();
+    private final ArrayList<Integer> errorPos = new ArrayList<Integer>();
 
     Lexer(String text) {
         this.text = text;
@@ -58,9 +60,9 @@ public class Lexer {
                 if (isDigit(c)) {
                     genNumber();
                 }
-                // this part is incomplete should be used for numbers and error handling
+                // We add the position of the unknown token to errorPos
                 else {
-                    System.out.println("Error in scanToken");
+                    errorPos.add(currentPos);
                 }
         }
     }
@@ -149,6 +151,15 @@ public class Lexer {
     }
 
     /**
+     * Check if our lexer found any errors after running scanToken
+     *
+     * @return true if error found, otherwise false
+     */
+    public boolean containErrors() {
+        return (errorPos.size() != 0);
+    }
+
+    /**
      * Adds NumToken to this.token
      */
     public void genNumber() {
@@ -163,6 +174,33 @@ public class Lexer {
             strNum.append(currentChar);
         }
         tokens.add(new NumToken(Double.parseDouble(strNum.toString()), currentPos));
+    }
+
+    /**
+     * Returns string of unknown tokens found
+     *
+     * @return a string of errors, otherwise it will return a blank string
+     */
+    public String errorLog() {
+        if (containErrors()) {
+            String returnStr = text + "\n";
+            // make next line fill of whitespaces
+            StringBuilder secondLine = new StringBuilder();
+            for (int i = 0; i < returnStr.length(); i++) {
+                secondLine.append(" ");
+            }
+            // change the positions found in errorPos to '^'
+            for (int pos : errorPos) {
+                secondLine.setCharAt(pos, '^');
+            }
+            secondLine.append("\n");
+            returnStr += secondLine.toString();
+            returnStr += "Invalid token(s) found\n";
+            return returnStr;
+        }
+        else {
+            return "";
+        }
     }
 
 }

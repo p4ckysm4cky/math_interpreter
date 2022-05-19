@@ -13,8 +13,8 @@
   * [x] Add ignore white space in lexer
 * [ ] error handling for lexer
   * [ ] don't execute if error in lexing
-  * [ ] error logging to user
-  * [ ] print error with arrow showing where it occurred in expression
+  * [x] error logging to user
+  * [x] print error with arrow showing where it occurred in expression
 * [x] peek function for looking ahead with no increment
 * [x] Testing script for lexer
 

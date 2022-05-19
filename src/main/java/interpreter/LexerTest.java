@@ -247,4 +247,35 @@ public class LexerTest {
         lex.scanTokens();
         expected = "[[NUMBER:45], [CARET], [L_PAREN], [NUMBER:36], [R_PAREN], [MINUS], [NUMBER:32]]";
     }
+
+    /**
+     * This part I'm too lazy, so just manual check it
+     * it's probably good enough :)
+     */
+    @Test
+    public void testErrorLog() {
+        Lexer lex = new Lexer("9+10");
+        lex.scanTokens();
+        System.out.println(lex.errorLog());
+
+        lex = new Lexer("9&10");
+        lex.scanTokens();
+        System.out.println(lex.errorLog());
+
+        lex = new Lexer("abcd * 123");
+        lex.scanTokens();
+        System.out.println(lex.errorLog());
+
+        lex = new Lexer("(89 * 32 + 5 * x \\5)");
+        lex.scanTokens();
+        System.out.println(lex.errorLog());
+
+        lex = new Lexer("{ * ( + 10 9 8[=] }");
+        lex.scanTokens();
+        System.out.println(lex.errorLog());
+
+        lex = new Lexer("56 * 32 / 52 - 33 ; 45 ^ 5 ! 32");
+        lex.scanTokens();
+        System.out.println(lex.errorLog());
+    }
 }
