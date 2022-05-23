@@ -33,6 +33,6 @@ expression -> factor (("+"|"-") factor)*
 factor -> power (("*"|"/") power)*
 power -> primary ("^" primary)*
 unary -> "-" primary
-primary -> NUMBER
+primary -> NUMBER | "(" expression ")"
 ```
 
