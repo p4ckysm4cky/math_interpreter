@@ -14,6 +14,10 @@ public class Token {
         this.col = col;
     }
 
+    Token(TokenType type) {
+        this(type, -1);
+    }
+
     public TokenType getTokenType() {
         return this.type;
     }

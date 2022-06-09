@@ -10,6 +10,10 @@ public class NumToken extends Token {
         this.value = value;
     }
 
+    NumToken(double value) {
+        this(value, -1);
+    }
+
     public double getValue() {
         return this.value;
     }

@@ -10,7 +10,7 @@ public class NumNode implements astNode{
     }
 
     public String toString() {
-        return this.number.toString();
+        return "" + this.number.getValue();
     }
 
     public double getValue() {
