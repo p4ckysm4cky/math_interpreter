@@ -8,4 +8,5 @@ public enum TokenType {
     NUMBER,
 
     // keywords (add in the future)
+    EOF,
 }

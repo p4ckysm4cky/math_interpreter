@@ -19,10 +19,12 @@
 * [x] Testing script for lexer
 * [ ] parser
   * [x] define grammar
-  * [ ] make all the node types
-    * [ ] implement display of expression for easy debugging / testing
+  * [x] make all the node types
+    * [x] implement display of expression for easy debugging / testing
   * [ ] make recursive descent parser
-  * [ ] test recursive descent parser
+    * [ ] Make helper functions for parsing
+    * [ ] test recursive descent parser
+    * [ ] Add error handling for incorrect input tokens
 
 
 
