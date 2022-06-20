@@ -88,7 +88,7 @@ public class ParserTest {
 
         expression = genExpression("65 - 5 - 5 - -12302 + -9");
         System.out.println(expression);
-        expected = "((58.0[PLUS]([MINUS]34.96))[MINUS]44.93)";
+        expected = "((((65.0[MINUS]5.0)[MINUS]5.0)[MINUS]([MINUS]12302.0))[PLUS]([MINUS]9.0))";
         assertEquals(expected, expression.toString());
     }
 
@@ -139,7 +139,7 @@ public class ParserTest {
 
         expression = genExpression("5^ -45");
         System.out.println(expression);
-        expected = "((45.0[STAR](5.0[CARET]3.0))[STAR]9.0)";
+        expected = "(5.0[CARET]([MINUS]45.0))";
         assertEquals(expected, expression.toString());
     }
 
@@ -155,10 +155,29 @@ public class ParserTest {
         expected = "45.32";
         assertEquals(expected, expression.toString());
 
-        // This one doesn't work properly - need to fix this
         expression = genExpression("(32 + 43) * 56");
         System.out.println(expression);
-        expected = "45.32";
+        expected = "((32.0[PLUS]43.0)[STAR]56.0)";
+        assertEquals(expected, expression.toString());
+
+        expression = genExpression("(-12) * -56");
+        System.out.println(expression);
+        expected = "(([MINUS]12.0)[STAR]([MINUS]56.0))";
+        assertEquals(expected, expression.toString());
+
+        expression = genExpression("(((-12))) * -56");
+        System.out.println(expression);
+        expected = "(([MINUS]12.0)[STAR]([MINUS]56.0))";
+        assertEquals(expected, expression.toString());
+
+        expression = genExpression("7 * (5+15) / (2*5)-3");
+        System.out.println(expression);
+        expected = "(((7.0[STAR](5.0[PLUS]15.0))[SLASH](2.0[STAR]5.0))[MINUS]3.0)";
+        assertEquals(expected, expression.toString());
+
+        expression = genExpression("32 ^ (3+56-32) * 43 / (32.32 - 3434224.34343)");
+        System.out.println(expression);
+        expected = "(((32.0[CARET]((3.0[PLUS]56.0)[MINUS]32.0))[STAR]43.0)[SLASH](32.32[MINUS]3434224.34343))";
         assertEquals(expected, expression.toString());
     }
 }

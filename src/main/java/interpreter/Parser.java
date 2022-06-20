@@ -102,6 +102,9 @@ public class Parser {
                 // This part needs to call a function for dealing with this error
                 System.out.println("Error in primary()");
             }
+            else {
+                advance();
+            }
 
         }
         else {
