@@ -22,7 +22,7 @@
   * [x] make all the node types
     * [x] implement display of expression for easy debugging / testing
   * [ ] make recursive descent parser
-    * [ ] Make helper functions for parsing
+    * [x] Make helper functions for parsing
     * [ ] test recursive descent parser
     * [ ] Add error handling for incorrect input tokens
 
@@ -33,8 +33,8 @@
 ```
 expression -> factor (("+"|"-") factor)*
 factor -> power (("*"|"/") power)*
-power -> primary ("^" primary)*
-unary -> "-" primary
+power -> unary ("^" unary)*
+unary -> "-" primary | primary
 primary -> NUMBER | "(" expression ")"
 ```
 

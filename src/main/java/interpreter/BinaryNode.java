@@ -1,11 +1,11 @@
 package main.java.interpreter;
 
-public class BinaryNode implements astNode{
-    private astNode left;
+public class BinaryNode implements AstNode {
+    private AstNode left;
     private Token operator;
-    private astNode right;
+    private AstNode right;
 
-    public BinaryNode(astNode left, Token operator, astNode right) {
+    public BinaryNode(AstNode left, Token operator, AstNode right) {
         this.left= left;
         this.operator = operator;
         this.right = right;

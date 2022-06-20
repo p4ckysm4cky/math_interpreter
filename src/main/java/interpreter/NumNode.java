@@ -1,6 +1,6 @@
 package main.java.interpreter;
 
-public class NumNode implements astNode{
+public class NumNode implements AstNode {
     private NumToken number;
     private double value;
 

@@ -1,5 +1,5 @@
 package main.java.interpreter;
 
-public interface astNode {
+public interface AstNode {
     public String toString();
 }
