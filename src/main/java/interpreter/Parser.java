@@ -58,7 +58,7 @@ public class Parser {
         return (peek().getTokenType() == type);
     }
 
-    private AstNode expression() {
+    public AstNode expression() {
         AstNode returnNode = factor();
         while(check(TokenType.PLUS) || check(TokenType.MINUS)) {
             returnNode =  new BinaryNode(returnNode, advance(), factor());
