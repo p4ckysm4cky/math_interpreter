@@ -9,6 +9,10 @@ public class UnaryNode implements AstNode {
         this.node = node;
     }
 
+    public double accept(Visitor v) {
+        return v.visitUnaryNode(this);
+    }
+
     public String toString() {
         return "(" + this.operator.toString() + this.node.toString() + ")";
     }

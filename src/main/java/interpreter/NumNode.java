@@ -9,6 +9,10 @@ public class NumNode implements AstNode {
          this.value = this.number.getValue();
     }
 
+    public double accept(Visitor v) {
+        return v.visitNumNode(this);
+    }
+
     public String toString() {
         return "" + this.number.getValue();
     }

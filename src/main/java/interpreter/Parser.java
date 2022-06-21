@@ -58,6 +58,13 @@ public class Parser {
         return (peek().getTokenType() == type);
     }
 
+    /**
+     * This is the entry point to get the
+     * abstract syntax tree from the tokens passed
+     * into the constructor
+     *
+     * @return abstract syntax tree
+     */
     public AstNode expression() {
         AstNode returnNode = factor();
         while(check(TokenType.PLUS) || check(TokenType.MINUS)) {

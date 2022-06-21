@@ -21,10 +21,17 @@
   * [x] define grammar
   * [x] make all the node types
     * [x] implement display of expression for easy debugging / testing
-  * [ ] make recursive descent parser
+  * [x] make recursive descent parser
     * [x] Make helper functions for parsing
-    * [ ] test recursive descent parser
+    * [x] Make recursive descent parser prototype
+    * [x] test recursive descent parser
+    * [ ] Rework unary grammar, so it allows `--34.97`
+    * [ ] Rework addition grammar, so it allows `++34.97`
     * [ ] Add error handling for incorrect input tokens
+  * [ ] Evaluate expression
+    * [ ] Implement Visitor pattern
+    * [ ] Run postorder traversal on tree
+    * [ ] Evaluate expression from postorder traversal
 
 
 

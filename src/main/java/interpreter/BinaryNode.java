@@ -11,6 +11,10 @@ public class BinaryNode implements AstNode {
         this.right = right;
     }
 
+    public double accept(Visitor v) {
+        return v.visitBinaryNode(this);
+    }
+
     public String toString() {
         return "(" + left.toString() + operator.toString() + right.toString() + ")";
     }
