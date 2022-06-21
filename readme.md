@@ -4,6 +4,8 @@
 
 ## Todo
 
+ * [ ] Use a try except block in the parser to stop crashing the entire program
+
 * [x] lexer scanning for tokens
   * [x] dealing with single char tokens
     * [X] Need to test this
@@ -29,8 +31,10 @@
     * [ ] Rework addition grammar, so it allows `++34.97`
     * [ ] Add error handling for incorrect input tokens
   * [ ] Evaluate expression
-    * [ ] Implement Visitor pattern
-    * [ ] Run postorder traversal on tree
+    * [x] Implement Visitor pattern
+    * [x] Run postorder traversal on tree
+    * [ ] Add error handling to traversal (AstVisitor)
+    * [ ] test postorder traversal
     * [ ] Evaluate expression from postorder traversal
 
 

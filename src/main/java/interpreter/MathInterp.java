@@ -3,6 +3,7 @@ package main.java.interpreter;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 
 public class MathInterp {
@@ -31,6 +32,11 @@ public class MathInterp {
             // run line
 
         }
+    }
+
+    public double eval(AstNode root) {
+        AstVisitor visitor = new AstVisitor();
+        return root.accept(visitor);
     }
 
     /**

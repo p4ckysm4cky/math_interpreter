@@ -13,6 +13,14 @@ public class UnaryNode implements AstNode {
         return v.visitUnaryNode(this);
     }
 
+    public Token getOperator() {
+        return operator;
+    }
+
+    public AstNode getNode() {
+        return node;
+    }
+
     public String toString() {
         return "(" + this.operator.toString() + this.node.toString() + ")";
     }

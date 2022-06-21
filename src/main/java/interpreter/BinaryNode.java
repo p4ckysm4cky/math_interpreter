@@ -15,6 +15,18 @@ public class BinaryNode implements AstNode {
         return v.visitBinaryNode(this);
     }
 
+    public AstNode getLeft() {
+        return this.left;
+    }
+
+    public AstNode getRight() {
+        return this.right;
+    }
+
+    public Token getOperator() {
+        return operator;
+    }
+
     public String toString() {
         return "(" + left.toString() + operator.toString() + right.toString() + ")";
     }
