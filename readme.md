@@ -19,7 +19,7 @@
   * [x] print error with arrow showing where it occurred in expression
 * [x] peek function for looking ahead with no increment
 * [x] Testing script for lexer
-* [ ] parser
+* [x] parser
   * [x] define grammar
   * [x] make all the node types
     * [x] implement display of expression for easy debugging / testing
@@ -30,11 +30,11 @@
     * [ ] Rework unary grammar, so it allows `--34.97`
     * [ ] Rework addition grammar, so it allows `++34.97`
     * [ ] Add error handling for incorrect input tokens
-* [ ] Evaluate expression
+* [x] Evaluate expression
   * [x] Implement Visitor pattern
   * [x] Run postorder traversal on tree
   * [ ] Add error handling to traversal (AstVisitor)
-  * [ ] test postorder traversal
+  * [x] test postorder traversal
   * [x] Evaluate expression from postorder traversal
 
 

@@ -140,5 +140,39 @@ public class MathInterpTest {
         assertEquals(8.75, output, 0.00000001);
     }
 
+    @Test
+    public void testParenthesisEval() {
+        MathInterp interp = new MathInterp();
+        double output = interp.eval(genAstNode("5"));
+        assertEquals(5, output, 0.00000001);
+
+        output = interp.eval(genAstNode("(6)"));
+        assertEquals(6, output, 0.00000001);
+
+        output = interp.eval(genAstNode("(6+3) * 2"));
+        assertEquals(18, output, 0.00000001);
+
+        output = interp.eval(genAstNode("-(6+3) * 2"));
+        assertEquals(-18, output, 0.00000001);
+
+        output = interp.eval(genAstNode("-(6+3) * -2"));
+        assertEquals(18, output, 0.00000001);
+
+        output = interp.eval(genAstNode("3+2^(5+3)"));
+        assertEquals(259, output, 0.00000001);
+
+        output = interp.eval(genAstNode("3*2^-(5+3)"));
+        assertEquals(0.01171875, output, 0.00000001);
+
+        output = interp.eval(genAstNode("((3*2^-(5+3)))"));
+        assertEquals(0.01171875, output, 0.00000001);
+
+        output = interp.eval(genAstNode("-(42 + 18) / -(8-3)"));
+        assertEquals(12, output, 0.00000001);
+
+        output = interp.eval(genAstNode("(42 + 18) / -(8-3)"));
+        assertEquals(-12, output, 0.00000001);
+    }
+
 
 }
