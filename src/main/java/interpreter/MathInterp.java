@@ -30,11 +30,12 @@ public class MathInterp {
                 return;
             }
             // run line
+            run(line);
 
         }
     }
 
-    public double eval(AstNode root) {
+    public static double eval(AstNode root) {
         AstVisitor visitor = new AstVisitor();
         return root.accept(visitor);
     }
@@ -43,6 +44,19 @@ public class MathInterp {
      * @param line, a String that is executed after parsing
      */
     private static void run(String line) {
-        ;
+        Lexer lexer = new Lexer(line);
+        ArrayList<Token> lexerTokens = lexer.scanTokens();
+        if (lexer.containErrors()) {
+            System.out.println(lexer.errorLog());
+            return;
+        }
+        try {
+            Parser parser = new Parser(lexerTokens);
+            AstNode root = parser.expression();
+            System.out.println(eval(root));
+        }
+        catch(Exception e) {
+            System.out.println("Error in parsing or evaluating");
+        }
     }
 }
