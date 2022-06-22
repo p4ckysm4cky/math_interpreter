@@ -30,12 +30,12 @@
     * [ ] Rework unary grammar, so it allows `--34.97`
     * [ ] Rework addition grammar, so it allows `++34.97`
     * [ ] Add error handling for incorrect input tokens
-  * [ ] Evaluate expression
-    * [x] Implement Visitor pattern
-    * [x] Run postorder traversal on tree
-    * [ ] Add error handling to traversal (AstVisitor)
-    * [ ] test postorder traversal
-    * [ ] Evaluate expression from postorder traversal
+* [ ] Evaluate expression
+  * [x] Implement Visitor pattern
+  * [x] Run postorder traversal on tree
+  * [ ] Add error handling to traversal (AstVisitor)
+  * [ ] test postorder traversal
+  * [x] Evaluate expression from postorder traversal
 
 
 
