@@ -1,4 +1,5 @@
 package main.java.interpreter;
+
 import java.util.ArrayList;
 
 public class Parser {
@@ -47,7 +48,6 @@ public class Parser {
     /**
      * Checks the next token with the type required
      *
-     *
      * @param type This is the type that we are expecting
      * @return boolean status indicating if the next token is of the same type as the argument provided
      */
@@ -67,8 +67,8 @@ public class Parser {
      */
     public AstNode expression() {
         AstNode returnNode = factor();
-        while(check(TokenType.PLUS) || check(TokenType.MINUS)) {
-            returnNode =  new BinaryNode(returnNode, advance(), factor());
+        while (check(TokenType.PLUS) || check(TokenType.MINUS)) {
+            returnNode = new BinaryNode(returnNode, advance(), factor());
         }
         return returnNode;
     }
@@ -93,8 +93,7 @@ public class Parser {
         AstNode returnNode;
         if (check(TokenType.MINUS)) {
             returnNode = new UnaryNode(advance(), primary());
-        }
-        else {
+        } else {
             returnNode = primary();
         }
         return returnNode;
@@ -108,18 +107,15 @@ public class Parser {
             if (!check(TokenType.R_PAREN)) {
                 // This part needs to call a function for dealing with this error
                 System.out.println("Error in primary()");
-            }
-            else {
+            } else {
                 advance();
             }
 
-        }
-        else {
+        } else {
             Token nextToken = advance();
             if (nextToken instanceof NumToken) {
                 returnNode = new NumNode((NumToken) nextToken);
-            }
-            else {
+            } else {
                 // This part needs to call a function for dealing with this error
                 System.out.println("Error in primary()");
             }
@@ -127,10 +123,4 @@ public class Parser {
         }
         return returnNode;
     }
-
-
-
-
-
-
 }

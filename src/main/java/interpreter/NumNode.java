@@ -1,12 +1,12 @@
 package main.java.interpreter;
 
 public class NumNode implements AstNode {
-    private NumToken number;
-    private double value;
+    private final NumToken number;
+    private final double value;
 
     public NumNode(NumToken number) {
-         this.number = number;
-         this.value = this.number.getValue();
+        this.number = number;
+        this.value = this.number.getValue();
     }
 
     public double accept(Visitor v) {

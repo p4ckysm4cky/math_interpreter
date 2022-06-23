@@ -1,8 +1,8 @@
 package main.java.interpreter;
 
 public class UnaryNode implements AstNode {
-    private Token operator;
-    private AstNode node;
+    private final Token operator;
+    private final AstNode node;
 
     public UnaryNode(Token operator, AstNode node) {
         this.operator = operator;

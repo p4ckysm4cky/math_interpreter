@@ -56,9 +56,9 @@ public class BinaryNodeTest {
         String expected = "(56.12[STAR]([MINUS]89.23))";
         assertEquals(c.toString(), expected);
 
-        BinaryNode lhs = new BinaryNode(new NumNode(new NumToken(32,0)), new Token(TokenType.PLUS), new NumNode(new NumToken(10)));
+        BinaryNode lhs = new BinaryNode(new NumNode(new NumToken(32, 0)), new Token(TokenType.PLUS), new NumNode(new NumToken(10)));
         BinaryNode rhs = c;
-        BinaryNode resultNode = new BinaryNode(lhs, new Token(TokenType.MINUS) ,rhs);
+        BinaryNode resultNode = new BinaryNode(lhs, new Token(TokenType.MINUS), rhs);
         System.out.println(resultNode);
         expected = "((32.0[PLUS]10.0)[MINUS](56.12[STAR]([MINUS]89.23)))";
         assertEquals(resultNode.toString(), expected);

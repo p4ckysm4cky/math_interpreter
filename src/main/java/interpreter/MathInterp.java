@@ -54,8 +54,7 @@ public class MathInterp {
             Parser parser = new Parser(lexerTokens);
             AstNode root = parser.expression();
             System.out.println(eval(root));
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("Error in parsing or evaluating");
         }
     }

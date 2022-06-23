@@ -197,8 +197,7 @@ public class Lexer {
             returnStr += secondLine.toString();
             returnStr += "Invalid token(s) found\n";
             return returnStr;
-        }
-        else {
+        } else {
             return "";
         }
     }
