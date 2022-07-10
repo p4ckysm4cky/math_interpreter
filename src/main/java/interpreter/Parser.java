@@ -68,7 +68,8 @@ public class Parser {
     public AstNode expression() {
         AstNode returnNode = factor();
         while (check(TokenType.PLUS) || check(TokenType.MINUS)) {
-            returnNode = new BinaryNode(returnNode, advance(), factor());
+            Token operator = advance();
+            returnNode = new BinaryNode(returnNode, operator, factor());
         }
         return returnNode;
     }
@@ -76,7 +77,8 @@ public class Parser {
     private AstNode factor() {
         AstNode returnNode = power();
         while (check(TokenType.STAR) || check(TokenType.SLASH)) {
-            returnNode = new BinaryNode(returnNode, advance(), power());
+            Token operator = advance();
+            returnNode = new BinaryNode(returnNode, operator, power());
         }
         return returnNode;
     }
@@ -84,7 +86,8 @@ public class Parser {
     private AstNode power() {
         AstNode returnNode = unary();
         while (check(TokenType.CARET)) {
-            returnNode = new BinaryNode(returnNode, advance(), unary());
+            Token operator = advance();
+            returnNode = new BinaryNode(returnNode, operator, unary());
         }
         return returnNode;
     }
@@ -92,7 +95,8 @@ public class Parser {
     private AstNode unary() {
         AstNode returnNode;
         if (check(TokenType.MINUS)) {
-            returnNode = new UnaryNode(advance(), primary());
+            Token operator = advance();
+            returnNode = new UnaryNode(operator, primary());
         } else {
             returnNode = primary();
         }

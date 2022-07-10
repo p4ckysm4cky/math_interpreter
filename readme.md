@@ -38,7 +38,7 @@
   * [x] Evaluate expression from postorder traversal
 * [ ] Code improvements
   * [x] Reformat all the files
-  * [ ] `new UnaryNode(advance(), primary())` could potentially cause some issues (should be separated to a different line)
+  * [x] `new UnaryNode(advance(), primary())` could potentially cause some issues (should be separated to a different line)
   * [ ] Use a separate enum for constructing `AstNode` instead of storing the token
 * [ ] Add constants like `PI`
 * [ ] Add functions (?)
